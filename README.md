@@ -26,7 +26,7 @@ A  developer portfolio built with vanilla HTML, CSS, and JavaScript. Features pa
 - **Scroll progress indicator** - gradient bar showing page position
 - **Text scramble effect** - headings decode when entering viewport
 - **Mobile hamburger menu** - responsive navigation
-- **Elegant minimal footer** - Dostoevsky quote, clean CTA
+- **Elegant minimal footer** -  clean CTA
 - **Scroll reveal animations** with Intersection Observer
 - **Contact form** (uses Web3Forms - add your key)
 - **Konami code easter egg** (↑↑↓↓←→←→BA)
