@@ -16,7 +16,6 @@ A  portfolio built with vanilla HTML, CSS, and JavaScript. Features particle bac
 - **Elegant minimal footer** -  clean CTA
 - **Scroll reveal animations** with Intersection Observer
 - **Contact form** (uses Web3Forms - add your key)
-- **Konami code easter egg** (↑↑↓↓←→←→BA)
 - **Keyboard accessible** with focus states
 - **Reduced motion support** for accessibility
 
