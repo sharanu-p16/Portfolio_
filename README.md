@@ -3,19 +3,6 @@
 
 A  portfolio built with vanilla HTML, CSS, and JavaScript. Features particle background with mouse interaction, code rain effect, custom cursor, smooth animations, and a 3D morphing object.
 
-##  Details in Portfolio
-
-| Section | Content |
-|---------|---------|
-| **Name** | Sharanabasappagouda |
-| **College** | CSIT, REVA University, Bengaluru |
-| **Bio** | 1st year CSIT student exploring Python, AI agents, and competitive programming |
-| **Languages** | Python, C, C++, SQL (basic), HTML (basic) |
-| **Frameworks** | FastAPI, Flask, NumPy, Pandas, STL (C++), NLTK |
-| **Tools** | Git, VS Code, WSL, Cursor, Ollama, OpenCode |
-| **Concepts** | DSA, OOP, Competitive Programming, AI Agents, Agentic Models, Database Basics, Version Control |
-| **Projects** | 1) 2D Graphics Editor (C) 2) Fake News Detection (Python) |
-| **Contact** | sharanuppatil16@gmail.com, github.com/sharanu-p16, linkedin.com/in/sharanu.p.patil |
 
 ## Features
 
