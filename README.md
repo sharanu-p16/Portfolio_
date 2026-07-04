@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Sharanu's Portfolio
 
 A  developer portfolio built with vanilla HTML, CSS, and JavaScript. Features particle background with mouse interaction, code rain effect, custom cursor, smooth animations, and a 3D morphing object.
@@ -100,3 +101,6 @@ Edit CSS variables in `styles.css`:
 ---
 
 **Built by Sharanabasappagouda** • CSIT @ REVA University • [GitHub](https://github.com/sharanu-p16)
+=======
+# Portfolio_
+>>>>>>> 82c2f3e2c9e5638ec02a836afe46d2449ec093eb
