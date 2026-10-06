@@ -491,53 +491,68 @@ class CustomCursor {
   constructor() {
     this.cursor = document.getElementById('cursor');
     this.ring = document.getElementById('cursor-ring');
-    this.mouseX = 0;
-    this.mouseY = 0;
-    this.ringX = 0;
-    this.ringY = 0;
-    this.isHovering = false;
+    if (!this.cursor || !this.ring) return;
+
+    this.mouseX = -100;
+    this.mouseY = -100;
+    this.ringX = -100;
+    this.ringY = -100;
+    this.isVisible = false;
     this.init();
   }
 
   init() {
+    const show = () => {
+      if (!this.isVisible) {
+        this.isVisible = true;
+        this.cursor.classList.add('active');
+        this.ring.classList.add('active');
+      }
+    };
+
+    const hide = () => {
+      this.isVisible = false;
+      this.cursor.classList.remove('active');
+      this.ring.classList.remove('active');
+      document.body.classList.remove('cursor-hover');
+    };
+
     document.addEventListener('mousemove', (e) => {
+      // Hide if cursor reaches window viewport edges
+      if (e.clientX <= 2 || e.clientY <= 2 || e.clientX >= window.innerWidth - 2 || e.clientY >= window.innerHeight - 2) {
+        hide();
+        return;
+      }
+
       this.mouseX = e.clientX;
       this.mouseY = e.clientY;
-      this.cursor.style.opacity = '1';
-      this.ring.style.opacity = '1';
+      show();
     });
 
-    document.addEventListener('mouseleave', () => {
-      this.cursor.style.opacity = '0';
-      this.ring.style.opacity = '0';
+    document.addEventListener('mouseleave', hide);
+    document.addEventListener('mouseenter', hide);
+    window.addEventListener('blur', hide);
+    window.addEventListener('focus', hide);
+    document.addEventListener('mouseout', (e) => {
+      if (!e.relatedTarget || e.relatedTarget.nodeName === 'HTML') {
+        hide();
+      }
     });
 
-    // Hover effects on interactive elements (excluding form inputs)
-    const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-card, .timeline-item, .social-link, .nav-links a, .nav-cta');
+    // Hover effects on interactive elements
+    const interactiveElements = document.querySelectorAll('a, button, .project-card, .skill-card, .timeline-item, .social-link, .nav-links a, .nav-cta, input, textarea');
     
     interactiveElements.forEach(el => {
       el.addEventListener('mouseenter', () => {
-        this.isHovering = true;
-        document.body.classList.add('cursor-hover');
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+          hide();
+        } else {
+          document.body.classList.add('cursor-hover');
+        }
       });
       
       el.addEventListener('mouseleave', () => {
-        this.isHovering = false;
         document.body.classList.remove('cursor-hover');
-      });
-    });
-
-    // Hide custom cursor on form inputs to show native text cursor
-    const formInputs = document.querySelectorAll('input, textarea');
-    formInputs.forEach(el => {
-      el.addEventListener('mouseenter', () => {
-        this.cursor.style.display = 'none';
-        this.ring.style.display = 'none';
-      });
-      
-      el.addEventListener('mouseleave', () => {
-        this.cursor.style.display = 'block';
-        this.ring.style.display = 'block';
       });
     });
 
@@ -545,11 +560,13 @@ class CustomCursor {
   }
 
   animate() {
-    this.cursor.style.transform = `translate(${this.mouseX}px, ${this.mouseY}px) translate(-50%, -50%)`;
-    
-    this.ringX += (this.mouseX - this.ringX) * 0.12;
-    this.ringY += (this.mouseY - this.ringY) * 0.12;
-    this.ring.style.transform = `translate(${this.ringX}px, ${this.ringY}px) translate(-50%, -50%)`;
+    if (this.isVisible) {
+      this.cursor.style.transform = `translate3d(${this.mouseX}px, ${this.mouseY}px, 0) translate(-50%, -50%)`;
+      
+      this.ringX += (this.mouseX - this.ringX) * 0.16;
+      this.ringY += (this.mouseY - this.ringY) * 0.16;
+      this.ring.style.transform = `translate3d(${this.ringX}px, ${this.ringY}px, 0) translate(-50%, -50%)`;
+    }
 
     requestAnimationFrame(() => this.animate());
   }
