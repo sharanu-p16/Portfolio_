@@ -887,22 +887,33 @@ class ProjectModalManager {
   }
 
   openModal(card) {
-    const badge = card.querySelector('.project-badge')?.outerHTML || '';
+    const badgeText = card.querySelector('.project-badge')?.textContent || '';
+    const badgeStyle = card.querySelector('.project-badge')?.getAttribute('style') || '';
     const title = card.querySelector('.project-title')?.textContent || '';
     const desc = card.querySelector('.project-desc')?.textContent || '';
     const features = card.querySelector('.project-features')?.innerHTML || '';
     const tech = card.querySelector('.project-tech')?.innerHTML || '';
     const link = card.querySelector('.project-link')?.href || '#';
 
-    document.getElementById('modal-badge').outerHTML = badge;
+    const modalBadge = document.getElementById('modal-badge');
+    if (modalBadge) {
+      modalBadge.textContent = badgeText;
+      if (badgeStyle) {
+        modalBadge.setAttribute('style', badgeStyle);
+      } else {
+        modalBadge.removeAttribute('style');
+      }
+    }
     document.getElementById('modal-title').textContent = title;
     document.getElementById('modal-desc').textContent = desc;
     document.getElementById('modal-features').innerHTML = features;
     document.getElementById('modal-tech').innerHTML = tech;
     
     const modalLink = document.getElementById('modal-link');
-    modalLink.href = link;
-    modalLink.textContent = link.includes('github.com') ? 'View GitHub Repo' : 'Learn More';
+    if (modalLink) {
+      modalLink.href = link;
+      modalLink.textContent = link.includes('github.com') ? 'View GitHub Repo' : 'Learn More';
+    }
 
     this.modal.classList.add('active');
     this.modal.setAttribute('aria-hidden', 'false');
