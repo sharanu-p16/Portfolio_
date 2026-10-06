@@ -424,48 +424,6 @@ class MagneticButtons {
   }
 }
 
-/* Text Scramble Effect */
-class TextScramble {
-  constructor() {
-    this.chars = '!<>-_\\/[]{}—=+*^?#________';
-    this.init();
-  }
-
-  init() {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          this.scrambleText(entry.target);
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.5 });
-
-    document.querySelectorAll('h1, h2, h3').forEach(el => {
-      el.setAttribute('data-text', el.textContent);
-      observer.observe(el);
-    });
-  }
-
-  scrambleText(el) {
-    const originalText = el.getAttribute('data-text');
-    const length = originalText.length;
-    let iteration = 0;
-    
-    const interval = setInterval(() => {
-      el.textContent = originalText
-        .split('')
-        .map((char, index) => {
-          if (index < iteration) return originalText[index];
-          return this.chars[Math.floor(Math.random() * this.chars.length)];
-        })
-        .join('');
-      
-      if (iteration >= length) clearInterval(interval);
-      iteration += 1 / 3;
-    }, 30);
-  }
-}
 
 /* Smooth Anchor Scroll */
 class SmoothScroll {
@@ -956,7 +914,6 @@ document.addEventListener('DOMContentLoaded', () => {
   new NavbarEffect();
   new ScrollProgress();
   new MagneticButtons();
-  new TextScramble();
   new SmoothScroll();
   new ThemeSwitcher();
   new ProjectModalManager();
