@@ -4,9 +4,21 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Sharanabasappagouda — CS Portfolio</title>
+  <title>Sharanabasappagouda p.patil — CS Portfolio</title>
   <meta name="description"
-    content="CSIT undergraduate at REVA University. Exploring Python, AI agents, and competitive programming.">
+    content="3rd Semester B.Tech CSIT student at REVA University. Exploring Python, C/C++, AI agents, and competitive programming.">
+  
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💻</text></svg>" />
+
+  <!-- Open Graph / Social Sharing Metadata -->
+  <meta property="og:title" content="Sharanabasappagouda p.patil — CS Portfolio"/>
+  <meta property="og:description" content="3rd Semester B.Tech CSIT student at REVA University. Exploring Python, C/C++, AI agents, and competitive programming."/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:url" content="https://sharanu-p16.github.io/Portfolio_/"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Sharanabasappagouda p.patil — CS Portfolio"/>
+  <meta name="twitter:description" content="3rd Semester B.Tech CSIT student at REVA University. Exploring Python, C/C++, AI agents, and competitive programming."/>
+
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -33,7 +45,10 @@
       <li><a href="#journey">Journey</a></li>
       <li><a href="#contact">Contact</a></li>
     </ul>
-    <a href="#contact" class="nav-cta">Get in Touch</a>
+    <div class="nav-actions" style="display:flex; align-items:center; gap:12px;">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle theme">☀️</button>
+      <a href="#contact" class="nav-cta">Get in Touch</a>
+    </div>
     <button class="nav-toggle" aria-label="Toggle menu">
       <span></span>
       <span></span>
@@ -44,9 +59,9 @@
   <section id="home">
     <div class="hero-left">
       <div class="hero-eyebrow">CSIT Undergrad · REVA University, Bengaluru</div>
-      <h1 class="hero-name">Hey, I am<br><span class="accent">Sharanabasappagouda</span></h1>
-      <p class="hero-role">1st Year CSIT Student | Exploring Software Development</p>
-      <p class="hero-tagline">I'm a 1st year CSIT student at REVA University, Bengaluru. Currently exploring Python, AI
+      <h1 class="hero-name">Hey, I am<br><span class="accent">Sharanabasappagouda p.patil</span></h1>
+      <p class="hero-role">3rd Semester B.Tech CSIT Student | Exploring Software Development</p>
+      <p class="hero-tagline">I'm a 3rd semester CSIT student at REVA University, Bengaluru. Currently exploring Python, AI
         agents, and agentic models while building problem-solving skills through competitive programming. Passionate
         about learning how intelligent systems work and applying code to real-world problems.</p>
       <div class="hero-btns">
@@ -277,6 +292,7 @@
         <div class="timeline-dot">🎓</div>
         <div class="timeline-content">
           <h3 class="timeline-heading">Growth — 1st Year @ REVA University</h3>
+          <div class="timeline-subheading" style="color:var(--accent); font-weight:600; font-size:0.95rem; margin-top:-0.25rem; margin-bottom:0.5rem;">3rd Semester B.Tech CSIT</div>
           <p class="timeline-text">
             Currently learning DSA, Agentic AI, and emerging AI technologies. Working on mini-projects like 2D graphics
             editor in C and fake news detector in Python. Switched from "it works on my machine" to Git, WSL, and
@@ -360,21 +376,22 @@
     <div class="form-toast"></div>
   </section>
 
-  <footer class="elegant-footer">
-    <div class="footer-content">
-      <div class="footer-cta">
-        <p class="footer-tagline">Let's build something amazing together.</p>
-        <a href="mailto:sharanuppatil16@gmail.com" class="footer-email">sharanuppatil16@gmail.com</a>
-      </div>
-      <div class="footer-divider"></div>
-      <div class="footer-bottom">
-        <p class="footer-made">The mystery of human existence lies not in just staying alive, but in finding something
-          to live for</p>
-        <p class="footer-credit">— Fyodor Dostoevsky</p>
-        <p class="footer-copy">&copy; 2026 Sharanabasappagouda</p>
+  <!-- Project Modal -->
+  <div id="project-modal" class="modal-backdrop" aria-hidden="true">
+    <div class="modal-content">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div id="modal-badge" class="project-badge"></div>
+      <h3 id="modal-title" class="modal-title"></h3>
+      <p id="modal-desc" class="modal-desc"></p>
+      <div class="modal-section-title">Key Highlights &amp; Features</div>
+      <ul id="modal-features" class="project-features"></ul>
+      <div class="modal-section-title">Technologies Used</div>
+      <div id="modal-tech" class="project-tech"></div>
+      <div class="modal-actions" style="margin-top: 1.5rem;">
+        <a id="modal-link" href="#" target="_blank" rel="noopener noreferrer" class="btn-primary">Visit Repository</a>
       </div>
     </div>
-  </footer>
+  </div>
 
   <script src="script.js"></script>
 </body>

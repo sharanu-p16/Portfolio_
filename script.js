@@ -832,6 +832,92 @@ function initMobileMenu() {
   });
 }
 
+/* Theme Switcher */
+class ThemeSwitcher {
+  constructor() {
+    this.btn = document.getElementById('theme-toggle');
+    if (!this.btn) return;
+    this.currentTheme = localStorage.getItem('theme') || 'dark';
+    this.init();
+  }
+
+  init() {
+    this.applyTheme(this.currentTheme);
+    this.btn.addEventListener('click', () => {
+      this.currentTheme = this.currentTheme === 'dark' ? 'light' : 'dark';
+      this.applyTheme(this.currentTheme);
+      localStorage.setItem('theme', this.currentTheme);
+    });
+  }
+
+  applyTheme(theme) {
+    document.documentElement.setAttribute('data-theme', theme);
+    this.btn.textContent = theme === 'dark' ? '☀️' : '🌙';
+  }
+}
+
+/* Project Modal Manager */
+class ProjectModalManager {
+  constructor() {
+    this.modal = document.getElementById('project-modal');
+    if (!this.modal) return;
+    this.closeBtn = this.modal.querySelector('.modal-close');
+    this.cards = document.querySelectorAll('.project-card');
+    this.init();
+  }
+
+  init() {
+    this.cards.forEach(card => {
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', (e) => {
+        // Prevent trigger if clicking directly on link button
+        if (e.target.closest('a')) return;
+        this.openModal(card);
+      });
+    });
+
+    this.closeBtn.addEventListener('click', () => this.closeModal());
+    this.modal.addEventListener('click', (e) => {
+      if (e.target === this.modal) this.closeModal();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && this.modal.classList.contains('active')) {
+        this.closeModal();
+      }
+    });
+  }
+
+  openModal(card) {
+    const badge = card.querySelector('.project-badge')?.outerHTML || '';
+    const title = card.querySelector('.project-title')?.textContent || '';
+    const desc = card.querySelector('.project-desc')?.textContent || '';
+    const features = card.querySelector('.project-features')?.innerHTML || '';
+    const tech = card.querySelector('.project-tech')?.innerHTML || '';
+    const link = card.querySelector('.project-link')?.href || '#';
+
+    document.getElementById('modal-badge').outerHTML = badge;
+    document.getElementById('modal-title').textContent = title;
+    document.getElementById('modal-desc').textContent = desc;
+    document.getElementById('modal-features').innerHTML = features;
+    document.getElementById('modal-tech').innerHTML = tech;
+    
+    const modalLink = document.getElementById('modal-link');
+    modalLink.href = link;
+    modalLink.textContent = link.includes('github.com') ? 'View GitHub Repo' : 'Learn More';
+
+    this.modal.classList.add('active');
+    this.modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  }
+
+  closeModal() {
+    this.modal.classList.remove('active');
+    this.modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+  }
+}
+
 /* Initialize Everything */
 document.addEventListener('DOMContentLoaded', () => {
   new ParticleSystem();
@@ -846,6 +932,8 @@ document.addEventListener('DOMContentLoaded', () => {
   new MagneticButtons();
   new TextScramble();
   new SmoothScroll();
+  new ThemeSwitcher();
+  new ProjectModalManager();
   initMobileMenu();
   initKonamiCode();
   
@@ -855,13 +943,13 @@ document.addEventListener('DOMContentLoaded', () => {
 │  CSIT @ REVA University                 │
 │                                         │
 │  Features:                              │
+│  • Dark / Light Theme Toggle            │
+│  • Interactive Project Modals           │
 │  • Colorful particle system             │
 │  • Code rain background                 │
 │  • Custom cursor + magnetic buttons     │
 │  • 3D morphing object                   │
-│  • Scroll progress + text scramble      │
 │  • Mobile hamburger menu                │
-│  • Konami code (↑↑↓↓←→←→BA)            │
 └─────────────────────────────────────────┘
   `);
 });
