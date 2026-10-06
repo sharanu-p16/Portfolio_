@@ -691,11 +691,21 @@ class ContactForm {
         message: formData.get('message')
       };
 
+      const accessKey = 'YOUR_WEB3FORMS_KEY';
+
+      if (accessKey === 'YOUR_WEB3FORMS_KEY') {
+        const mailtoUrl = `mailto:sharanuppatil16@gmail.com?subject=Contact from ${encodeURIComponent(data.name)}&body=${encodeURIComponent(`Name: ${data.name}\nEmail: ${data.email}\n\nMessage:\n${data.message}`)}`;
+        window.location.href = mailtoUrl;
+        this.showToast('Opening your email client to send the message...', 'success');
+        this.form.reset();
+        return;
+      }
+
       const response = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          access_key: 'YOUR_WEB3FORMS_KEY',
+          access_key: accessKey,
           ...data
         })
       });
@@ -709,7 +719,10 @@ class ContactForm {
         throw new Error(result.message || 'Failed to send');
       }
     } catch (error) {
-      this.showToast('Something went wrong. Please email me directly.', 'error');
+      this.showToast('Something went wrong. Opening email client instead...', 'error');
+      const formData = new FormData(this.form);
+      const mailtoUrl = `mailto:sharanuppatil16@gmail.com?subject=Contact from ${encodeURIComponent(formData.get('name') || 'Portfolio Visitor')}&body=${encodeURIComponent(formData.get('message') || '')}`;
+      window.location.href = mailtoUrl;
     } finally {
       submitBtn.disabled = false;
       submitBtn.innerHTML = '<span>Send Message</span>';

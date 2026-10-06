@@ -1239,6 +1239,16 @@ footer span {
   }
 }
 
+/* TOUCH / MOBILE CURSOR DISABLE */
+@media (hover: none) and (pointer: coarse) {
+  body {
+    cursor: auto !important;
+  }
+  #cursor, #cursor-ring {
+    display: none !important;
+  }
+}
+
 /* REDUCED MOTION */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
