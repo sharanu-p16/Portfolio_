@@ -756,11 +756,9 @@ class NavbarEffect {
       const currentScroll = window.pageYOffset;
       
       if (currentScroll > 50) {
-        this.nav.style.background = 'rgba(255, 255, 255, 0.92)';
-        this.nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.06)';
+        this.nav.classList.add('nav-scrolled');
       } else {
-        this.nav.style.background = 'rgba(255, 255, 255, 0.8)';
-        this.nav.style.boxShadow = 'none';
+        this.nav.classList.remove('nav-scrolled');
       }
 
       this.lastScroll = currentScroll;

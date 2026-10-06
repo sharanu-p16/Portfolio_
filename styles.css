@@ -4,24 +4,48 @@
   box-sizing: border-box;
 }
 
-:root {
-  --bg: #ffffff;
-  --surface: #f8f9fa;
-  --glass: rgba(0, 0, 0, 0.02);
-  --glass-border: rgba(0, 0, 0, 0.08);
+:root,
+[data-theme="dark"] {
+  --bg: #090d16;
+  --surface: #111827;
+  --card-bg: rgba(17, 24, 39, 0.85);
+  --section-bg-1: #090d16;
+  --section-bg-2: #0f172a;
+  --nav-bg: rgba(9, 13, 22, 0.85);
+  --nav-bg-scrolled: rgba(9, 13, 22, 0.95);
+  --footer-bg: #060911;
+  --glass: rgba(255, 255, 255, 0.03);
+  --glass-border: rgba(255, 255, 255, 0.1);
   --accent: #4285f4;
   --accent-light: #669df6;
-  --accent-glow: rgba(66, 133, 244, 0.15);
+  --accent-glow: rgba(66, 133, 244, 0.2);
   --red: #ea4335;
   --yellow: #fbbc04;
   --green: #34a853;
   --blue: #4285f4;
   --purple: #a142f4;
+  --text: #cbd5e1;
+  --muted: #94a3b8;
+  --heading: #f8fafc;
+  --mono: 'Space Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
+}
+
+[data-theme="light"] {
+  --bg: #ffffff;
+  --surface: #f8f9fa;
+  --card-bg: #ffffff;
+  --section-bg-1: #ffffff;
+  --section-bg-2: #f8f9ff;
+  --nav-bg: rgba(255, 255, 255, 0.85);
+  --nav-bg-scrolled: rgba(255, 255, 255, 0.95);
+  --footer-bg: #f0f4ff;
+  --glass: rgba(0, 0, 0, 0.02);
+  --glass-border: rgba(0, 0, 0, 0.08);
   --text: #202124;
   --muted: #5f6368;
   --heading: #1a1a2e;
-  --mono: 'Space Mono', monospace;
-  --sans: 'Space Grotesk', sans-serif;
+  --accent-glow: rgba(66, 133, 244, 0.15);
 }
 
 /* SCROLL PROGRESS */
@@ -159,11 +183,16 @@ nav {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--nav-bg);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border-bottom: 1px solid var(--glass-border);
   transition: background 0.4s ease, box-shadow 0.4s ease;
+}
+
+nav.nav-scrolled {
+  background: var(--nav-bg-scrolled);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
 }
 
 .nav-logo {
@@ -398,7 +427,7 @@ section {
   font-family: var(--mono);
   font-size: 0.7rem;
   color: var(--muted);
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--surface);
   padding: 0.35rem 0.9rem;
   border-radius: 20px;
   border: 1px solid var(--glass-border);
@@ -449,7 +478,7 @@ section {
 
 /* SKILLS */
 #skills {
-  background: linear-gradient(180deg, var(--bg) 0%, #f8f9ff 100%);
+  background: linear-gradient(180deg, var(--section-bg-1) 0%, var(--section-bg-2) 100%);
 }
 
 .skills-grid {
@@ -459,7 +488,7 @@ section {
 }
 
 .skill-card {
-  background: #fff;
+  background: var(--card-bg);
   border: 1px solid var(--glass-border);
   border-radius: 16px;
   padding: 2rem;
@@ -545,7 +574,7 @@ section {
 
 /* PROJECTS */
 #projects {
-  background: linear-gradient(180deg, #f8f9ff 0%, var(--bg) 100%);
+  background: linear-gradient(180deg, var(--section-bg-2) 0%, var(--section-bg-1) 100%);
 }
 
 .projects-grid {
@@ -555,7 +584,7 @@ section {
 }
 
 .project-card {
-  background: #fff;
+  background: var(--card-bg);
   border: 1px solid var(--glass-border);
   border-radius: 20px;
   padding: 2rem;
@@ -724,7 +753,7 @@ section {
 
 /* JOURNEY */
 #journey {
-  background: linear-gradient(180deg, var(--bg) 0%, #f8f9ff 100%);
+  background: linear-gradient(180deg, var(--section-bg-1) 0%, var(--section-bg-2) 100%);
 }
 
 .timeline {
@@ -791,7 +820,7 @@ section {
 
 /* CONTACT */
 #contact {
-  background: linear-gradient(180deg, #f8f9ff 0%, var(--bg) 100%);
+  background: linear-gradient(180deg, var(--section-bg-2) 0%, var(--section-bg-1) 100%);
 }
 
 .contact-wrap {
@@ -817,7 +846,7 @@ section {
   transition: color 0.2s, background 0.2s, transform 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   padding: 0.75rem 1rem;
   border-radius: 10px;
-  background: #fff;
+  background: var(--card-bg);
   border: 1px solid var(--glass-border);
 }
 
@@ -855,7 +884,7 @@ section {
 
 .form-group input,
 .form-group textarea {
-  background: #fff;
+  background: var(--card-bg);
   border: 1px solid var(--glass-border);
   border-radius: 10px;
   padding: 0.85rem 1rem;
@@ -988,7 +1017,7 @@ footer span {
 
 /* ELEGANT FOOTER */
 .elegant-footer {
-  background: linear-gradient(180deg, var(--bg) 0%, #f0f4ff 100%);
+  background: var(--footer-bg);
   padding: 5rem 2rem 2rem;
 }
 
